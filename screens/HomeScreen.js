@@ -1,12 +1,7 @@
 import { MapView } from 'expo';
 import React from 'react';
 import {
-	Image,
-	Platform,
-	ScrollView,
 	StyleSheet,
-	Text,
-	TouchableOpacity,
 	View,
 } from 'react-native';
 
@@ -22,8 +17,8 @@ export default class HomeScreen extends React.Component {
 		region: {
 			longitude: -73.5879,
 			latitude: 45.5088,
-			longitudeDelta: 0.001,
-			latitudeDelta: 0.001
+			longitudeDelta: 0.005,
+			latitudeDelta: 0.005
 		},
 		mapLoaded: false
 	}
