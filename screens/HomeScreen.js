@@ -1,22 +1,22 @@
 import { MapView } from 'expo';
 import React from 'react';
 import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+	Image,
+	Platform,
+	ScrollView,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
 } from 'react-native';
 
 /* MONTREAL */
 // -73.5879,
 // 45.5088,
 export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    header: null,
-  };
+	static navigationOptions = {
+		header: null,
+	};
 
 	state = {
 		region: {
@@ -28,21 +28,21 @@ export default class HomeScreen extends React.Component {
 		mapLoaded: false
 	}
 
-  render() {
-    return (
-      <View style={styles.container}>
+	render() {
+		return (
+			<View style={styles.container}>
 				<MapView
 					style={{ flex: 1 }}
 					initialRegion={this.state.region}
 				/>
-      </View>
-    );
-  }
+			</View>
+		);
+	}
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
+	container: {
+		flex: 1,
+		backgroundColor: '#fff',
+	},
 });
