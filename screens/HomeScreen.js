@@ -17,8 +17,8 @@ export default class HomeScreen extends React.Component {
 		region: {
 			longitude: -73.5879,
 			latitude: 45.5088,
-			longitudeDelta: 0.005,
-			latitudeDelta: 0.005
+			longitudeDelta: 0.1,
+			latitudeDelta: 0.1
 		},
 		mapLoaded: false
 	}
