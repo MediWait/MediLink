@@ -6,14 +6,16 @@ import {
 	ScrollView
 } from 'react-native';
 import { ListItem, SearchBar, Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
 
+import { openHospitalScreen } from '../actions';
 import Colors from '../constants/Colors';
 import HospitalList from '../components/HospitalList';
 
 /* MONTREAL */
 // -73.5879,
 // 45.5088,
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
 	static navigationOptions = ({ navigation }) => ({
 		headerTintColor: Colors.darkPrimary,
 		headerStyle: {
@@ -62,7 +64,8 @@ export default class HomeScreen extends React.Component {
 	}
 
 	openHospital = (hospital) => {
-		this.props.navigation.navigate('hospital', { hospital });
+		this.props.openHospitalScreen(hospital);
+		this.props.navigation.navigate('hospital');
 	}
 
 	render() {
@@ -100,3 +103,5 @@ const styles = StyleSheet.create({
 		marginLeft: 15
 	}
 });
+
+export default connect(null, { openHospitalScreen })(HomeScreen);

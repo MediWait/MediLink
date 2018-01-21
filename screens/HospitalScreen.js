@@ -6,14 +6,15 @@ import {
 	ListItem,
 	Icon
 } from 'react-native-elements';
+import { connect } from 'react-redux';
 
+import * as actions from '../actions';
 import Colors from '../constants/Colors';
 
-export default class HospitalScreen extends Component {
+class HospitalScreen extends Component {
 	static navigationOptions = ({ navigation }) => {
-		console.log(navigation.state.params.hospital);
 		return {
-			title: navigation.state.params.hospital.name,
+			title: 'Thing',
 			headerTintColor: Colors.headerTextIcons,
 			headerStyle: {
 				backgroundColor: Colors.primary,
@@ -28,14 +29,21 @@ export default class HospitalScreen extends Component {
 		// const { hospital } = this.props.navigation.state;
 
 		// console.log(hospital);
+		console.log(this.props.hospital);
 		return (
 			<View>
 				<List>
 					<ListItem
-						title="thing"
+						title={this.props.hospital.name}
 					/>
 				</List>
 			</View>
 		);
 	}
 }
+
+function mapStateToProps({ hospital }) {
+	return { hospital };
+}
+
+export default connect(mapStateToProps, actions)(HospitalScreen);
