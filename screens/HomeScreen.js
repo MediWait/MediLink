@@ -8,9 +8,10 @@ import {
 import { ListItem, SearchBar, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 
-import { openHospitalScreen } from '../actions';
+import * as actions from '../actions';
 import Colors from '../constants/Colors';
 import HospitalList from '../components/HospitalList';
+import StatusBadge from '../components/StatusBadge';
 
 /* MONTREAL */
 // -73.5879,
@@ -58,7 +59,17 @@ class HomeScreen extends React.Component {
 				key={hospital.id}
 				title={hospital.name}
 				subtitle={hospital.distance}
-				onPress={(item) => this.openHospital(item)}
+				onPress={(item) => {
+					// this.props.openHospitalScreen(item);
+					this.props.navigation.navigate('hospital');
+				}}
+				badge={{ element: (
+					<StatusBadge
+						time={hospital.time}
+						color={hospital.color}
+						people={hospital.crowd}
+					/>
+				) }}
 			/>
 		);
 	}
@@ -104,4 +115,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default connect(null, { openHospitalScreen })(HomeScreen);
+export default connect(null, actions)(HomeScreen);
