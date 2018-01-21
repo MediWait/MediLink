@@ -1,14 +1,11 @@
 import { MapView } from 'expo';
 import React from 'react';
 import {
-	Image,
-	Platform,
-	ScrollView,
 	StyleSheet,
-	Text,
-	TouchableOpacity,
-	View,
+	View
 } from 'react-native';
+
+import HospitalList from '../components/HospitalList';
 
 /* MONTREAL */
 // -73.5879,
@@ -22,8 +19,8 @@ export default class HomeScreen extends React.Component {
 		region: {
 			longitude: -73.5879,
 			latitude: 45.5088,
-			longitudeDelta: 0.001,
-			latitudeDelta: 0.001
+			longitudeDelta: 0.1,
+			latitudeDelta: 0.1
 		},
 		mapLoaded: false
 	}
@@ -35,6 +32,7 @@ export default class HomeScreen extends React.Component {
 					style={{ flex: 1 }}
 					initialRegion={this.state.region}
 				/>
+				<HospitalList />
 			</View>
 		);
 	}
