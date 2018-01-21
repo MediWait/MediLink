@@ -2,18 +2,46 @@ import { MapView } from 'expo';
 import React from 'react';
 import {
 	StyleSheet,
-	View
+	View,
+	ScrollView
 } from 'react-native';
+import { ListItem, SearchBar, Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
 
+import * as actions from '../actions';
+import Colors from '../constants/Colors';
 import HospitalList from '../components/HospitalList';
+import StatusBadge from '../components/StatusBadge';
 
 /* MONTREAL */
 // -73.5879,
 // 45.5088,
-export default class HomeScreen extends React.Component {
-	static navigationOptions = {
-		header: null,
-	};
+class HomeScreen extends React.Component {
+	static navigationOptions = ({ navigation }) => ({
+		headerTintColor: Colors.darkPrimary,
+		headerStyle: {
+			backgroundColor: Colors.primary,
+			padding: 0,
+			margin: 0,
+			justifyContent: 'center',
+		},
+		headerLeft: (
+			<Icon
+				name="settings"
+				iconStyle={{ color: Colors.headerTextIcons }}
+				containerStyle={styles.settingsCont}
+				onPress={() => navigation.navigate('filters')}
+			/>
+		),
+		headerRight:(
+			<SearchBar
+				round
+				icon={{ type: 'font-awesome', name: 'search', color: Colors.lightPrimary }}
+				containerStyle={{ backgroundColor: 'transparent', width: 250 }}
+				inputStyle={{ backgroundColor: Colors.darkPrimary, color: Colors.lightPrimary }}
+			/>
+		)
+	});
 
 	state = {
 		region: {
@@ -25,6 +53,32 @@ export default class HomeScreen extends React.Component {
 		mapLoaded: false
 	}
 
+	renderItem = (hospital) => {
+		return (
+			<ListItem
+				key={hospital.id}
+				title={hospital.name}
+				subtitle={hospital.distance}
+				onPress={(item) => {
+					// this.props.openHospitalScreen(item);
+					this.props.navigation.navigate('hospital');
+				}}
+				badge={{ element: (
+					<StatusBadge
+						time={hospital.time}
+						color={hospital.color}
+						people={hospital.crowd}
+					/>
+				) }}
+			/>
+		);
+	}
+
+	openHospital = (hospital) => {
+		this.props.openHospitalScreen(hospital);
+		this.props.navigation.navigate('hospital');
+	}
+
 	render() {
 		return (
 			<View style={styles.container}>
@@ -32,7 +86,13 @@ export default class HomeScreen extends React.Component {
 					style={{ flex: 1 }}
 					initialRegion={this.state.region}
 				/>
-				<HospitalList />
+				<View style={styles.hospitalList}>
+					<ScrollView>
+						<HospitalList
+							renderItem={this.renderItem}
+						/>
+					</ScrollView>
+				</View>
 			</View>
 		);
 	}
@@ -43,4 +103,16 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: '#fff',
 	},
+	hospitalList: {
+		height: 200,
+		margin: 0,
+		padding: 0
+	},
+	settingsCont: {
+		backgroundColor: 'transparent',
+		flex: 1,
+		marginLeft: 15
+	}
 });
+
+export default connect(null, actions)(HomeScreen);

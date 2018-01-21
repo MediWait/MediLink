@@ -1,8 +1,8 @@
 {
 	"expo": {
-		"name": "medilink",
+		"name": "MediWait",
 		"description": "A very interesting project.",
-		"slug": "medilink",
+		"slug": "mediwait",
 		"privacy": "public",
 		"sdkVersion": "25.0.0",
 		"platforms": ["ios", "android"],

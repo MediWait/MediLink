@@ -1,105 +1,145 @@
 import React, { Component } from 'react';
-import { View, Picker, Text } from 'react-native';
-import { 
-    CheckBox,
-    Divider,
-    Slider,
+import { View, Picker, Text, StyleSheet } from 'react-native';
+import {
+	CheckBox,
+	Divider,
+	Slider,
 } from 'react-native-elements';
 
+import Colors from '../constants/Colors';
+
 export default class FilterContent extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            serviceTitle: 'Service',
-            service: 'Urgence',
-            typeOfServiceTitle: 'Installations',
-                hospitalText: 'Hopital',
-                hospitalCheck: true,
-                clinicText: 'Clinique (GMF-UMF)',
-                clinicCheck: true,
-                clscText: 'CLSC',
-                clscCheck: true,
-            proximiteTitle: 'Proximite',
-            proximiteValue: 10,
-            ramqCheck: true,
-            ramqText: 'Couvert par la RAMQ' 
+	constructor(props) {
+		super(props);
+		this.state = {
+			serviceTitle: 'Service',
+			service: 'Urgence',
+			typeOfServiceTitle: 'Installations',
+			hospitalText: 'Hopital',
+			hospitalCheck: true,
+			clinicText: 'Clinique (GMF-UMF)',
+			clinicCheck: true,
+			clscText: 'CLSC',
+			clscCheck: true,
+			proximiteTitle: 'Proximite',
+			proximiteValue: 10,
+			ramqCheck: true,
+			ramqText: 'Couvert par la RAMQ'
 
-        };
-    }
+		};
+	}
 
-    render() {
-        return (
-            <View>
-                <Text> {this.state.serviceTitle} </Text>
+	validationRamq = () => {
+		this.setState({ clscCheck: !this.state.ramqCheck });
+		this.setState({ ramqCheck: !this.state.ramqCheck });
+	}
 
-                <Picker
-                    selectedValue = { this.state.service }
-                    onValueChange={(itemValue, itemIndex) => this.setState({service: itemValue})}
-                >                 
-                    <Picker.Item label = 'Urgence' value = 'Urgence'/>
-                    <Picker.Item label = 'Centre de prelevement' value = 'Centre de prelevement'/>
-                    <Picker.Item label = 'Radiographie' value = 'Radiographie'/>
-                    <Picker.Item label = 'Resonance magnetique' value = 'Resonance magnetique'/>
-                </Picker>
+	render() {
+		return (
+			<View>
+				<Text style={styles.label}> {this.state.serviceTitle} </Text>
 
-                <Divider style = {{ backgroundColor: 'grey' }} />
+				<Picker
+					selectedValue = { this.state.service }
+					onValueChange={(itemValue, _itemIndex) => this.setState({ service: itemValue })}
+				>
+					<Picker.Item label = 'Urgence' value = 'Urgence'/>
+					<Picker.Item label = 'Centre de prelevement' value = 'Centre de prelevement'/>
+					<Picker.Item label = 'Radiographie' value = 'Radiographie'/>
+					<Picker.Item label = 'Resonance magnetique' value = 'Resonance magnetique'/>
+				</Picker>
 
-                <Text> {this.state.typeOfServiceTitle} </Text>
+				<Divider style = {{ backgroundColor: Colors.divider }} />
 
-                <CheckBox 
-                    onIconPress={() => this.setState({hospitalCheck: !this.state.hospitalCheck })}
-                    onPress={() => this.setState({hospitalCheck: !this.state.hospitalCheck })}
-                    title = { this.state.hospitalText }
-                    checked = { this.state.hospitalCheck }
-                    iconRight
-                    textStyle = { { textAlign: 'left' } } 
-                ></CheckBox>
+				<Text style={styles.label}> {this.state.typeOfServiceTitle} </Text>
 
-                <CheckBox 
-                    onIconPress={() => this.setState({clinicCheck: !this.state.clinicCheck })}
-                    onPress={() => this.setState({clinicCheck: !this.state.clinicCheck })}
-                    title = { this.state.clinicText }
-                    checked = { this.state.clinicCheck }
-                    iconRight
-                    textStyle = { { textAlign: 'left' } } 
-                ></CheckBox>
+				<CheckBox
+					onPress={() => this.setState({ hospitalCheck: !this.state.hospitalCheck })}
+					title = { this.state.hospitalText }
+					checked = { this.state.hospitalCheck }
+					iconRight
+					textStyle = {styles.checkboxText}
+					containerStyle={styles.checkboxContainer}
+				/>
 
-                <CheckBox 
-                    onIconPress={() => this.setState({clscCheck: !this.state.clscCheck })}
-                    onPress={() => this.setState({clscCheck: !this.state.clscCheck })}
-                    title = { this.state.clscText }
-                    checked = { this.state.clscCheck }
-                    iconRight
-                    textStyle = { { textAlign: 'left' } } 
-                ></CheckBox>
-            
-                <Divider style = {{ backgroundColor: 'grey' }} />
+				<CheckBox
+					onPress={() => this.setState({ clinicCheck: !this.state.clinicCheck })}
+					title = { this.state.clinicText }
+					checked = { this.state.clinicCheck }
+					iconRight
+					textStyle = {styles.checkboxText}
+					containerStyle={styles.checkboxContainer}
+				/>
 
-                <Text> {this.state.proximiteTitle} </Text>
+				<CheckBox
+					onPress={() => this.setState({ clscCheck: !this.state.clscCheck })}
+					title = { this.state.clscText }
+					checked = { this.state.clscCheck }
+					iconRight
+					textStyle = {styles.checkboxText}
+					containerStyle={styles.checkboxContainer}
+				/>
 
-                <Slider
-                    minimumValue = { 0 }
-                    maximumValue = { 100 }
-                    onValueChange = {(value) => this.setState({proximiteValue: value})}
-                />
+				<Divider style = {{ backgroundColor: Colors.divider }} />
 
-                <Text> {'Distance:' } {this.state.proximiteValue.toFixed(0)} {' km'} </Text>
+				<Text style={styles.label}> {this.state.proximiteTitle} </Text>
 
-                <Divider style = {{ backgroundColor: 'grey' }} />
+				<Slider
+					minimumValue = { 0 }
+					maximumValue = { 100 }
+					onValueChange = {(value) => this.setState({ proximiteValue: value })}
+					style={styles.slider}
+					trackStyle={styles.sliderTrack}
+					thumbStyle={styles.sliderNipple}
+				/>
 
-                <Text> {'Autre'} </Text>
+				<Text style={styles.distance}> {'Distance:' } {this.state.proximiteValue.toFixed(0)} {' km'} </Text>
 
-                <CheckBox 
-                    onIconPress={() => this.setState({clscCheck: !this.state.ramqCheck })}
-                    onPress={() => this.setState({clscCheck: !this.state.ramqText })}
-                    title = { this.state.ramqText }
-                    checked = { this.state.ramqCheck }
-                    iconRight
-                    textStyle = { { textAlign: 'left' } } 
-                ></CheckBox>
+				<Divider style = {{ backgroundColor: Colors.divider }} />
 
-            </View>
-        );
-    }
+				<Text style={styles.label}> {'Autre'} </Text>
+
+				<CheckBox
+					onPress={this.validationRamq}
+					title = { this.state.ramqText }
+					checked = { this.state.ramqCheck }
+					iconRight
+					textStyle = {styles.checkboxText}
+					containerStyle={styles.checkboxContainer}
+				/>
+
+			</View>
+		);
+	}
 }
 
+const styles = StyleSheet.create({
+	checkboxContainer: {
+		backgroundColor: Colors.lightPrimary
+	},
+	checkboxText: {
+		textAlign: 'left',
+		color: Colors.primaryText
+	},
+	label: {
+		fontSize: 20,
+		color: Colors.primaryText,
+		paddingLeft: 4,
+		marginTop: 5
+	},
+	distance: {
+		textAlign: 'center',
+		color: Colors.secondaryText
+	},
+	slider: {
+		marginLeft: 7,
+		marginRight: 7
+	},
+	sliderTrack: {
+		backgroundColor: Colors.lightPrimary,
+		borderColor: Colors.darkPrimary
+	},
+	sliderNipple: {
+		backgroundColor: Colors.accent
+	}
+});
