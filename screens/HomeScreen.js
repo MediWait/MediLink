@@ -27,19 +27,26 @@ class HomeScreen extends React.Component {
 		},
 		headerLeft: (
 			<Icon
-				name="settings"
+				name="menu"
 				iconStyle={{ color: Colors.headerTextIcons }}
 				containerStyle={styles.settingsCont}
 				onPress={() => navigation.navigate('filters')}
 			/>
 		),
 		headerRight:(
-			<SearchBar
-				round
-				icon={{ type: 'font-awesome', name: 'search', color: Colors.lightPrimary }}
-				containerStyle={{ backgroundColor: 'transparent', width: 250 }}
-				inputStyle={{ backgroundColor: Colors.darkPrimary, color: Colors.lightPrimary }}
-			/>
+			<View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }} >
+				<SearchBar
+					round
+					icon={{ type: 'font-awesome', name: 'search', color: Colors.lightPrimary }}
+					containerStyle={{ backgroundColor: 'transparent', width: 250 }}
+					inputStyle={{ backgroundColor: Colors.darkPrimary, color: Colors.lightPrimary }}
+				/>
+				<Icon
+					name="settings"
+					iconStyle={{ color: Colors.headerTextIcons }}
+					containerStyle={styles.settingsCont}
+				/>
+			</View>
 		)
 	});
 
@@ -111,7 +118,7 @@ const styles = StyleSheet.create({
 	settingsCont: {
 		backgroundColor: 'transparent',
 		flex: 1,
-		marginLeft: 15
+		marginHorizontal: 15
 	}
 });
 

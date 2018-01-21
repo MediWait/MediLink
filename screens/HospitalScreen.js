@@ -65,6 +65,7 @@ class HospitalScreen extends Component {
 					<List style={styles.list}>
 						<ListItem
 							title="Urgence"
+							hideChevron
 							badge={{ element: (
 								<StatusBadge
 									time="6h00"
@@ -75,6 +76,7 @@ class HospitalScreen extends Component {
 						/>
 						<ListItem
 							title="Centre de Prelevements"
+							hideChevron
 							badge={{ element: (
 								<StatusBadge
 									time="3h14"
@@ -85,6 +87,7 @@ class HospitalScreen extends Component {
 						/>
 						<ListItem
 							title="Radiologie"
+							hideChevron
 							badge={{ element: (
 								<StatusBadge
 									time="4h00"
@@ -102,12 +105,14 @@ class HospitalScreen extends Component {
 					<List style={styles.list}>
 						<ListItem
 							title="Stationnement"
+							hideChevron
 							badge={{ element: (
 								<Text>25$</Text>
 							) }}
 						/>
 						<ListItem
 							title="Stationnement"
+							hideChevron
 							badge={{ element: (
 								<Text style={{ color: Colors.green }}>
 									Ouvert
