@@ -29,6 +29,11 @@ export default class FilterContent extends Component {
 		};
 	}
 
+	validationRamq = () => {
+		this.setState({ clscCheck: !this.state.ramqCheck });
+		this.setState({ ramqCheck: !this.state.ramqCheck });
+	}
+
 	render() {
 		return (
 			<View>
@@ -49,7 +54,6 @@ export default class FilterContent extends Component {
 				<Text style={styles.label}> {this.state.typeOfServiceTitle} </Text>
 
 				<CheckBox
-					onIconPress={() => this.setState({ hospitalCheck: !this.state.hospitalCheck })}
 					onPress={() => this.setState({ hospitalCheck: !this.state.hospitalCheck })}
 					title = { this.state.hospitalText }
 					checked = { this.state.hospitalCheck }
@@ -59,7 +63,6 @@ export default class FilterContent extends Component {
 				/>
 
 				<CheckBox
-					onIconPress={() => this.setState({ clinicCheck: !this.state.clinicCheck })}
 					onPress={() => this.setState({ clinicCheck: !this.state.clinicCheck })}
 					title = { this.state.clinicText }
 					checked = { this.state.clinicCheck }
@@ -69,7 +72,6 @@ export default class FilterContent extends Component {
 				/>
 
 				<CheckBox
-					onIconPress={() => this.setState({ clscCheck: !this.state.clscCheck })}
 					onPress={() => this.setState({ clscCheck: !this.state.clscCheck })}
 					title = { this.state.clscText }
 					checked = { this.state.clscCheck }
@@ -98,8 +100,7 @@ export default class FilterContent extends Component {
 				<Text style={styles.label}> {'Autre'} </Text>
 
 				<CheckBox
-					onIconPress={() => this.setState({ clscCheck: !this.state.ramqCheck })}
-					onPress={() => this.setState({ clscCheck: !this.state.ramqText })}
+					onPress={this.validationRamq}
 					title = { this.state.ramqText }
 					checked = { this.state.ramqCheck }
 					iconRight

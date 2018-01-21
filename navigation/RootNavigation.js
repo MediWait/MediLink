@@ -4,6 +4,7 @@ import { StackNavigator } from 'react-navigation';
 
 import HomeScreen from '../screens/HomeScreen';
 import FilterScreen from '../screens/FilterScreen';
+import HospitalScreen from '../screens/HospitalScreen';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 
 const RootStackNavigator = StackNavigator(
@@ -13,6 +14,9 @@ const RootStackNavigator = StackNavigator(
 		},
 		filters: {
 			screen: FilterScreen
+		},
+		hospital: {
+			screen: HospitalScreen
 		}
 	},
 	{

@@ -5,7 +5,7 @@ import {
 	View,
 	ScrollView
 } from 'react-native';
-import { Button, SearchBar, Icon } from 'react-native-elements';
+import { ListItem, SearchBar, Icon } from 'react-native-elements';
 
 import Colors from '../constants/Colors';
 import HospitalList from '../components/HospitalList';
@@ -50,6 +50,21 @@ export default class HomeScreen extends React.Component {
 		mapLoaded: false
 	}
 
+	renderItem = (hospital) => {
+		return (
+			<ListItem
+				key={hospital.id}
+				title={hospital.name}
+				subtitle={hospital.distance}
+				onPress={(item) => this.openHospital(item)}
+			/>
+		);
+	}
+
+	openHospital = (hospital) => {
+		this.props.navigation.navigate('hospital', { hospital });
+	}
+
 	render() {
 		return (
 			<View style={styles.container}>
@@ -59,7 +74,9 @@ export default class HomeScreen extends React.Component {
 				/>
 				<View style={styles.hospitalList}>
 					<ScrollView>
-						<HospitalList />
+						<HospitalList
+							renderItem={this.renderItem}
+						/>
 					</ScrollView>
 				</View>
 			</View>
