@@ -1,6 +1,10 @@
 # MediWait
 The crowdsourcing app for medical wait lines.
 
+## Try it out!
+Works on Android and iOS
+
+[Click me!](https://exp.host/@progdrasil/mediwait)
 
 ## Inspiration
 
