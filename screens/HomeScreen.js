@@ -5,7 +5,7 @@ import {
 	View,
 	ScrollView
 } from 'react-native';
-import { Button, SearchBar } from 'react-native-elements';
+import { Button, SearchBar, Icon } from 'react-native-elements';
 
 import Colors from '../constants/Colors';
 import HospitalList from '../components/HospitalList';
@@ -23,10 +23,10 @@ export default class HomeScreen extends React.Component {
 			justifyContent: 'center',
 		},
 		headerLeft: (
-			<Button
-				icon={{ name: 'settings' }}
-				backgroundColor="transparent"
-				containerViewStyle={{ padding: 0, margin: 0 }}
+			<Icon
+				name="settings"
+				iconStyle={{ color: Colors.headerTextIcons }}
+				containerStyle={styles.settingsCont}
 				onPress={() => navigation.navigate('filters')}
 			/>
 		),
@@ -73,8 +73,13 @@ const styles = StyleSheet.create({
 		backgroundColor: '#fff',
 	},
 	hospitalList: {
-		height: 150,
+		height: 200,
 		margin: 0,
 		padding: 0
+	},
+	settingsCont: {
+		backgroundColor: 'transparent',
+		flex: 1,
+		marginLeft: 15
 	}
 });
