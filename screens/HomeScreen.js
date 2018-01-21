@@ -2,9 +2,12 @@ import { MapView } from 'expo';
 import React from 'react';
 import {
 	StyleSheet,
-	View
+	View,
+	StatusBar
 } from 'react-native';
+import { Button, SearchBar } from 'react-native-elements';
 
+import Colors from '../constants/Colors';
 import HospitalList from '../components/HospitalList';
 
 /* MONTREAL */
@@ -12,7 +15,28 @@ import HospitalList from '../components/HospitalList';
 // 45.5088,
 export default class HomeScreen extends React.Component {
 	static navigationOptions = {
-		header: null,
+		headerTintColor: Colors.darkPrimary,
+		headerStyle: {
+			backgroundColor: Colors.primary,
+			padding: 0,
+			margin: 0,
+			justifyContent: 'center',
+		},
+		headerLeft: (
+			<Button
+				icon={{ name: 'menu' }}
+				backgroundColor="transparent"
+				containerViewStyle={{ padding: 0, margin: 0 }}
+			/>
+		),
+		headerRight:(
+			<SearchBar
+				round
+				icon={{ type: 'font-awesome', name: 'search', color: Colors.lightPrimary}}
+				containerStyle={{ backgroundColor: 'transparent', width: 250 }}
+				inputStyle={{ backgroundColor: Colors.darkPrimary, color: Colors.lightPrimary }}
+			/>
+		)
 	};
 
 	state = {
@@ -43,4 +67,10 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: '#fff',
 	},
+	menuButton: {
+		height: 40,
+		width: 40,
+		padding: 0,
+		margin: 0
+	}
 });

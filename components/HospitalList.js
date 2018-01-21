@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import HospitalListItem from './HospitalListItem';
-import { hospitals } from './list.json';
+import { hospitals } from './list.js';
 
 export default class HospitalList extends Component {
 	render() {
