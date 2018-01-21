@@ -8,9 +8,12 @@ import registerForPushNotificationsAsync from '../api/registerForPushNotificatio
 
 const RootStackNavigator = StackNavigator(
 	{
-		Main: {
+		main: {
 			screen: HomeScreen,
 		},
+		filters: {
+			screen: FilterScreen
+		}
 	},
 	{
 		navigationOptions: () => ({

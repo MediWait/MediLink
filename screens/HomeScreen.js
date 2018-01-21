@@ -3,7 +3,7 @@ import React from 'react';
 import {
 	StyleSheet,
 	View,
-	StatusBar
+	ScrollView
 } from 'react-native';
 import { Button, SearchBar } from 'react-native-elements';
 
@@ -14,7 +14,7 @@ import HospitalList from '../components/HospitalList';
 // -73.5879,
 // 45.5088,
 export default class HomeScreen extends React.Component {
-	static navigationOptions = {
+	static navigationOptions = ({ navigation }) => ({
 		headerTintColor: Colors.darkPrimary,
 		headerStyle: {
 			backgroundColor: Colors.primary,
@@ -24,20 +24,21 @@ export default class HomeScreen extends React.Component {
 		},
 		headerLeft: (
 			<Button
-				icon={{ name: 'menu' }}
+				icon={{ name: 'settings' }}
 				backgroundColor="transparent"
 				containerViewStyle={{ padding: 0, margin: 0 }}
+				onPress={() => navigation.navigate('filters')}
 			/>
 		),
 		headerRight:(
 			<SearchBar
 				round
-				icon={{ type: 'font-awesome', name: 'search', color: Colors.lightPrimary}}
+				icon={{ type: 'font-awesome', name: 'search', color: Colors.lightPrimary }}
 				containerStyle={{ backgroundColor: 'transparent', width: 250 }}
 				inputStyle={{ backgroundColor: Colors.darkPrimary, color: Colors.lightPrimary }}
 			/>
 		)
-	};
+	});
 
 	state = {
 		region: {
@@ -56,7 +57,11 @@ export default class HomeScreen extends React.Component {
 					style={{ flex: 1 }}
 					initialRegion={this.state.region}
 				/>
-				<HospitalList />
+				<View style={styles.hospitalList}>
+					<ScrollView>
+						<HospitalList />
+					</ScrollView>
+				</View>
 			</View>
 		);
 	}
@@ -67,10 +72,9 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: '#fff',
 	},
-	menuButton: {
-		height: 40,
-		width: 40,
-		padding: 0,
-		margin: 0
+	hospitalList: {
+		height: 150,
+		margin: 0,
+		padding: 0
 	}
 });
