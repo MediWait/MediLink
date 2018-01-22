@@ -1,7 +1,7 @@
 {
 	"expo": {
 		"name": "MediWait",
-		"description": "A very interesting project.",
+		"description": "A crowdsourcing app for medical wait lines",
 		"slug": "mediwait",
 		"privacy": "public",
 		"sdkVersion": "25.0.0",
