@@ -40,4 +40,4 @@ We succeeded in building a pretty and clean interface. We were also able to thin
 
 
 
-Made with :heart: at ![Hackatown2018](https://hackatown2018.devpost.com/?ref_content=default&ref_feature=challenge&ref_medium=discover)
+Made with :heart: at [Hackatown2018](https://hackatown2018.devpost.com/?ref_content=default&ref_feature=challenge&ref_medium=discover)
